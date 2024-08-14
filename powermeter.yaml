@@ -103,11 +103,14 @@ sensor:
     filters:
       - delta: 0.02
       - calibrate_linear:
+          - -0.05 -> 0
           - 0 -> 0
-          - 0.022 -> 0.66
+          - 0.013 -> 1.12
+          - 0.015 -> 1.19
+          - 0.096 -> 9.1
 
   - platform: ct_clamp
-    sensor: Input_2
+    sensor: Input_2  # not in use right now 2024-08-14T12:06:02+0200
     name: "Circuit 2"
     id: Circuit_2
     sample_duration: 200ms
@@ -116,7 +119,7 @@ sensor:
       - delta: 0.02
       - calibrate_linear:
           - 0 -> 0
-          - 0.022 -> 0.66
+          - 1 -> 1
 
   - platform: ct_clamp
     sensor: Input_3
@@ -128,7 +131,7 @@ sensor:
       - delta: 0.02
       - calibrate_linear:
           - 0 -> 0
-          - 0.022 -> 0.66
+          - 0.083 -> 8.15
 
   - platform: ct_clamp
     sensor: Input_4
@@ -140,7 +143,9 @@ sensor:
       - delta: 0.02
       - calibrate_linear:
           - 0 -> 0
-          - 0.022 -> 0.66
+          - 0.007 -> 0.55
+          - 0.009 -> 0.88
+          - 0.017 -> 1.65
 
   - platform: ct_clamp
     sensor: Input_5
@@ -152,7 +157,10 @@ sensor:
       - delta: 0.02
       - calibrate_linear:
           - 0 -> 0
-          - 0.022 -> 0.66
+          # expected values aggregated from other clamps (can't physically reach this one):
+          - 0.001 -> 0.007
+          - 0.010 -> 0.080
+          - 0.100 -> 9.700
 
   - platform: template
     name: "Circuit 1..2"  # Derives the aggregated sum value of circuits 1 and 2 by deducting circuits 3,4,5 from the total measured value of 1..5
@@ -172,7 +180,8 @@ sensor:
       - delta: 0.02
       - calibrate_linear:
           - 0 -> 0
-          - 0.022 -> 0.66
+          - 0.008 -> 0.71
+          - 0.120 -> 11.5
 
   - platform: total_daily_energy
     name: "Circuit 1..5 - Daily Power"
